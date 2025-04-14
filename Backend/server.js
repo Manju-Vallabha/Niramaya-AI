@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://niramaya-ai.vercel.app/", // Replace with your frontend URL
+    origin: "https://niramaya-ai.vercel.app", // Replace with your frontend URL
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
