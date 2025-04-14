@@ -50,7 +50,7 @@ const Header = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/Register`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: emailInput }),
@@ -63,7 +63,7 @@ const Header = () => {
         setShowRegisterModal(true);
         setTimeout(() => {
           setShowRegisterModal(false);
-          navigate(`/Register?email=${encodeURIComponent(emailInput)}`);
+          navigate(`/Login?email=${encodeURIComponent(emailInput)}`);
         }, 2000);
         return;
       }
