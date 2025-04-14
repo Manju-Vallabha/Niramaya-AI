@@ -78,6 +78,7 @@ const Register = () => {
         className="bg-white p-10 rounded-2xl shadow-md w-full max-w-md"
       >
         <h2 className="text-3xl font-bold mb-6 text-ayurBrown font-sans">Register</h2>
+        <label className="block text-sm font-medium text-ayurBrown mb-1">Name</label>
         <input
           type="text"
           placeholder="Name"
@@ -86,6 +87,7 @@ const Register = () => {
           required
           className="w-full mb-4 p-3 border border-ayurBrown rounded-xl focus:outline-none focus:ring-2 focus:ring-accent"
         />
+        <label className="block text-sm font-medium text-ayurBrown mb-1">Email</label>
         <input
           type="email"
           placeholder="Email"
@@ -94,6 +96,7 @@ const Register = () => {
           required
           className="w-full mb-4 p-3 border border-ayurBrown rounded-xl focus:outline-none focus:ring-2 focus:ring-accent"
         />
+        <label className="block text-sm font-medium text-ayurBrown mb-1">Date of Birth</label>
         <input
           type="date"
           value={dob}
@@ -101,6 +104,7 @@ const Register = () => {
           required
           className="w-full mb-4 p-3 border border-ayurBrown rounded-xl focus:outline-none focus:ring-2 focus:ring-accent"
         />
+        <label className="block text-sm font-medium text-ayurBrown mb-1">Past Health Records</label>
         <textarea
           placeholder="Past Health Records (e.g., Diabetes, Asthma...)"
           value={healthRecords}
