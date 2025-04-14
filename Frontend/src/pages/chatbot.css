@@ -1,0 +1,15 @@
+.blinking-text::after {
+  content: '_';
+  animation: blink 1s steps(2, start) infinite;
+  font-weight: bold;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
