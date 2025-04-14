@@ -78,11 +78,8 @@ function LabReport() {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log('proceedToAnalyze - Backend response:', response.data);
       const llmResponse = response.data.llmResponse || '';
-      console.log('proceedToAnalyze - llmResponse:', llmResponse);
       setAiSummary(llmResponse.trim());
-      console.log('proceedToAnalyze - aiSummary set:', llmResponse.trim());
       setStep('done');
     } catch (err) {
       console.error('proceedToAnalyze - Error:', err);
@@ -145,7 +142,6 @@ function LabReport() {
   // 🔁 Trigger typing after animation
   useEffect(() => {
       if (step === 'done' && !animationComplete && aiSummary) {
-        console.log('useEffect - Starting typing effect with aiSummary:', aiSummary);
         setTimeout(() => {
           setAnimationComplete(true);
           startTypingEffect(aiSummary);
