@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://niramaya-ai.vercel.app", // Replace with your frontend URL
+    origin: "http://localhost:5173", // Replace with your frontend URL
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
@@ -157,13 +157,20 @@ async function startServer() {
 
   // Register route
   app.post("/register", async (req, res) => {
-    const { email, name, dob, healthRecords } = req.body;
+    let { email, name, dob, healthRecords } = req.body;
     console.log("Registration attempt for email:", email);
 
-    if (!email || !name || !dob || !healthRecords) {
-      console.log("Validation failed. Missing fields:", { email, name, dob, healthRecords });
-      return res.status(400).json({ message: "Email, name, date of birth, and health record are required" });
+    if (!email || !name || !dob) {
+      console.log("Validation failed. Missing fields:", { email, name, dob });
+      return res.status(400).json({ message: "Email, name, and date of birth are required" });
     }
+    
+    // Set default empty list if healthRecords is not provided
+    healthRecords = healthRecords || [];
+    
+    console.log("Proceeding with data:", { email, name, dob, healthRecords });
+    // Continue processing...
+    
 
     try {
       const { rows } = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
@@ -205,8 +212,6 @@ async function startServer() {
       // Log the wakeup request (for debugging or monitoring)
       console.log('Wakeup request received:', {
         timestamp: new Date().toISOString(),
-        body: req.body,
-        headers: req.headers,
       });
   
       // Perform any server initialization tasks if needed
@@ -239,9 +244,9 @@ async function startServer() {
         scansCount: req.user.scanscount,
         queriesCount: req.user.queriescount,
         activities: await getUserActivities(req.user.email),
+        healthRecords: await getuserhearecords(req.user.email)
 
       });
-      
     } catch (err) {
       console.error("DB error:", err);
       res.status(500).json({ message: "Server error" });
@@ -256,24 +261,12 @@ async function startServer() {
     );
     return rows;
   }
-
-  async function getuserhealthrecords(userEmail) {
-    try {
-      const { rows } = await pool.query(
-        'SELECT "healthrecords" FROM users WHERE email = $1',
-        [userEmail]
-      );
-      if (rows.length === 0) {
-        console.warn(`No user found for email: ${userEmail}`);
-        return []; // Return empty array if no user found
-      }
-      const healthRecords = rows[0].healthRecords || [];
-      console.log(`Fetched health records for ${userEmail}:`, healthRecords);
-      return healthRecords;
-    } catch (err) {
-      console.error(`Error fetching health records for ${userEmail}:`, err.message);
-      return []; // Return empty array on error
-    }
+  async function getuserhearecords(userEmail) {
+    const { rows } = await pool.query(
+      "SELECT action, date FROM activities WHERE userEmail = $1 ORDER BY date DESC",
+      [userEmail]
+    );
+    return rows[0]; // Return empty array if no health records found
   }
 
   // Record User Activity
@@ -371,7 +364,6 @@ app.post("/labreport", authenticateToken, upload.single("file"), async (req, res
       originalname: req.file.originalname,
       filename: req.file.filename,
       fileExt,
-      filePath,
     });
 
     let result;
@@ -415,7 +407,8 @@ app.post("/labreport", authenticateToken, upload.single("file"), async (req, res
       console.warn(`No health records found for ${userEmail}, proceeding without them`);
     }
 
-    console.log("🧠 Generating medical prompt...");
+
+    console.log("🧠 Generating Lab Report Prompt...");
     const prompt = generateMedicalSummaryPrompt(result.text, language, user.age, health);
 
     history.push({ role: "user", content: prompt });
@@ -519,7 +512,6 @@ app.post("/labreport", authenticateToken, upload.single("file"), async (req, res
 
       console.log("🧠 Generating medicine prompt...");
       const prompt = generateMedicineSummary(result.text, language, user.age, health);
-      console.log("Prompt generated:", prompt);
 
       history.push({ role: "user", content: prompt });
 
@@ -597,7 +589,7 @@ app.post("/chatbot", authenticateToken, async (req, res) => {
 
     history.push({ role: "user", content: input });
 
-    console.log(`🤖 Sending message list to LLM for user: ${userEmail}`);
+    console.log(`🤖 Sending message to LLM for user: ${userEmail}`);
     const llmResponse = await sendToLLM(history);
 
     history.push({ role: "assistant", content: llmResponse });
@@ -656,7 +648,6 @@ app.post("/chatbot", authenticateToken, async (req, res) => {
       console.log(`🔍 Chat history found for user: ${userEmail}`);
       const systemMessage = messageList[0] ? [messageList[0]] : [];
       console.log(`🧹 Clearing chat history for user: ${userEmail}`);
-      console.log(`    Retained only the system message: ${systemMessage[0]?.content}`);
       chatHistoryMap.set(userEmail, systemMessage);
       console.log(`✅ Chat history cleared for user: ${userEmail}, only system message retained`);
     } else {
@@ -669,7 +660,7 @@ app.post("/chatbot", authenticateToken, async (req, res) => {
   // Start the server
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () => {
-    console.log(`🚀 Server is running on port ${PORT}`);
+    console.log(`🚀 Server is running...`);
   });
 
   // Fallback route
