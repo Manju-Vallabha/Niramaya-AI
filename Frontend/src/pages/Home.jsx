@@ -70,29 +70,6 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [isPaused, languages]);
 
-  // IntersectionObserver for language section
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasShownPopup) {
-          setShowLanguagePopup(true);
-          setHasShownPopup(true);
-          setTimeout(() => setShowLanguagePopup(false), 5000);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (languageSectionRef.current) {
-      observer.observe(languageSectionRef.current);
-    }
-
-    return () => {
-      if (languageSectionRef.current) {
-        observer.unobserve(languageSectionRef.current);
-      }
-    };
-  }, [hasShownPopup]);
 
   useEffect(() => {
     let popupTimer;
@@ -152,7 +129,7 @@ const Home = () => {
 
   const handleFeatureClick = useCallback(
     (path) => {
-      navigate(user ? path : '/login');
+      navigate(user ? path : '/Register');
     },
     [user, navigate]
   );
@@ -165,10 +142,6 @@ const Home = () => {
 
   const closePopup = () => {
     setShowPopup(false);
-  };
-
-  const closeLanguagePopup = () => {
-    setShowLanguagePopup(false);
   };
 
   const team = [
@@ -241,27 +214,6 @@ const Home = () => {
           role="alert"
           aria-live="assertive"
         >
-          <div className="bg-primary rounded-lg shadow-xl p-6 w-full max-w-xs sm:max-w-sm relative">
-            <div className="flex justify-center mb-4">
-              <img
-                src="/symbol-logo.png"
-                alt="Niramaya AI Logo"
-                className="w-16 h-16 rounded-full object-cover"
-                style={{ backgroundColor: '#2C7A7B' }}
-              />
-            </div>
-            <h3 className="text-lg font-semibold text-white text-center mb-2" style={{ color: '#FFFFFF' }}>
-              Explore Languages
-            </h3>
-            <p className="text-white text-center mb-4">Discover health insights in your preferred language!</p>
-            <button
-              onClick={closeLanguagePopup}
-              className="bg-white text-primary py-2 px-4 rounded-full font-semibold hover:bg-teal-600 transition duration-300 w-full"
-              aria-label="Close language popup"
-            >
-              Got it
-            </button>
-          </div>
         </motion.div>
       )}
 
