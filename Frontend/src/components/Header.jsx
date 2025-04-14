@@ -63,7 +63,7 @@ const Header = () => {
         setShowRegisterModal(true);
         setTimeout(() => {
           setShowRegisterModal(false);
-          navigate(`/Login?email=${encodeURIComponent(emailInput)}`);
+          navigate(`/Register?email=${encodeURIComponent(emailInput)}`);
         }, 2000);
         return;
       }
