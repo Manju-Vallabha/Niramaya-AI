@@ -12,10 +12,8 @@ const Home = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('English');
   const [isPaused, setIsPaused] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('Connecting to server...');
-  const [popupTitle, setPopupTitle] = useState('Connecting...');
-  const [showLanguagePopup, setShowLanguagePopup] = useState(false);
-  const [hasShownPopup, setHasShownPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('Server is taking too long to respond.');
+  const [popupTitle, setPopupTitle] = useState('Connection Issue');
   const languageSectionRef = useRef(null);
 
   const languages = ['English', 'Hindi', 'Telugu', 'Tamil'];
@@ -70,34 +68,28 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [isPaused, languages]);
 
-
   useEffect(() => {
     let popupTimer;
     let timeoutTimer;
-  
+
     const sendWakeupRequest = async () => {
-      setShowPopup(true);
-      setPopupTitle('Connecting...');
-      setPopupMessage('Connecting to server...');
-  
-      // Set a timeout to change the message if the request takes longer than 10 seconds
+      // Set a timeout to show popup if request takes longer than 10 seconds
       timeoutTimer = setTimeout(() => {
-        setPopupTitle('Server Waking');
-        setPopupMessage('Server is waking...');
+        setShowPopup(true);
+        setPopupTitle('Connection Issue');
+        setPopupMessage('Server is taking too long to respond.');
       }, 10000);
-  
+
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URL}/api/wakeup`,
           { source: 'home-page' },
-          { timeout: 15000 } // Increased timeout to allow for server wake-up
+          { timeout: 15000 }
         );
-  
+
         const data = response.data;
-        if (data.success) {
-          // Do not show success message; close the popup immediately
-          setShowPopup(false);
-        } else {
+        if (!data.success) {
+          setShowPopup(true);
           setPopupTitle('Server Error');
           setPopupMessage(data.message || 'Server responded with an error.');
           popupTimer = setTimeout(() => {
@@ -105,6 +97,7 @@ const Home = () => {
           }, 5000);
         }
       } catch (error) {
+        setShowPopup(true);
         setPopupTitle('Connection Issue');
         setPopupMessage(
           error.code === 'ECONNABORTED'
@@ -115,12 +108,12 @@ const Home = () => {
           setShowPopup(false);
         }, 5000);
       } finally {
-        clearTimeout(timeoutTimer); // Clear the timeout if the request completes
+        clearTimeout(timeoutTimer);
       }
     };
-  
+
     sendWakeupRequest();
-  
+
     return () => {
       if (popupTimer) clearTimeout(popupTimer);
       if (timeoutTimer) clearTimeout(timeoutTimer);
@@ -201,19 +194,6 @@ const Home = () => {
               Got it
             </button>
           </div>
-        </motion.div>
-      )}
-
-      {showLanguagePopup && (
-        <motion.div
-          className="fixed inset-0 flex items-center justify-center z-50 px-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.3 }}
-          role="alert"
-          aria-live="assertive"
-        >
         </motion.div>
       )}
 
@@ -328,8 +308,7 @@ const Home = () => {
                   ? 'bg-primary text-white'
                   : 'bg-gray-200 text-primary hover:bg-gray-300'
                 } 
-                ${languages.length > 3 ? 'flex-1 max-w-[70px] sm:max-w-[100px]' : 'min-w-fit max-w-[80px] sm:max-w-[100px]'}
-                ${showLanguagePopup ? 'glow' : ''}`}
+                ${languages.length > 3 ? 'flex-1 max-w-[70px] sm:max-w-[100px]' : 'min-w-fit max-w-[80px] sm:max-w-[100px]'}`}
               onMouseEnter={() => handleLanguageSelect(lang)}
               onClick={() => handleLanguageSelect(lang)}
               aria-label={`Preview ${lang} language`}
@@ -464,10 +443,10 @@ const Home = () => {
               <img
                 src={member.photo}
                 alt={`Portrait of ${member.name}`}
-                className="w-16 h-16 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 object-cover border-2 border-primary"
+                className="w-24 h-24 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 object-cover border-2 border-primary"
                 loading="lazy"
               />
-              <h3 className="text-sm sm:text-lg font-semibold text-primary">{member.name}</h3>
+              <h3 className="text-sm sm:text-lg font-verdana text-primary"><strong>{member.name}</strong></h3>
               <p className="text-gray-600 text-xs sm:text-base mt-2">{member.role}</p>
               <motion.a
                 href={member.linkedin}
