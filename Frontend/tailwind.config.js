@@ -17,7 +17,7 @@ module.exports = {
         sans: ['Inter', 'sans-serif']
       },
       backgroundImage: {
-        'hero-watermark': "url('/src/assets/niramaya-logo.svg')" // You can customize this path
+        'hero-watermark': "url('/src/assets/niramaya-logo-main.png')" // You can customize this path
       },
     },
   },
