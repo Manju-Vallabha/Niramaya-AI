@@ -30,13 +30,39 @@ const Header = () => {
   };
 
   const handleLogout = async () => {
-    setToken('');
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('email');
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-    await fetchUser();
-    if (path !== '/') handleNavigate('/');
+    try {
+      // Send logout request to the server
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/logout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: emailInput }),
+      });
+  
+      // Clear local state and storage
+      setToken('');
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('email');
+      localStorage.removeItem('token');
+      setIsLoggedIn(false);
+  
+      // Refresh user data
+      await fetchUser();
+  
+      // Navigate to home if not already there
+      if (path !== '/') handleNavigate('/');
+    } catch (error) {
+      console.error('Logout failed:', error.response?.data?.message || error.message);
+      
+      // Optionally still clear local data even if server request fails
+      setToken('');
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('email');
+      localStorage.removeItem('token');
+      setIsLoggedIn(false);
+  
+      // Navigate to home
+      if (path !== '/') handleNavigate('/');
+    }
   };
 
   const handleLoginClick = () => setShowModal(true);
