@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { motion } from "framer-motion"; // Import framer-motion
+import { Analytics } from "@vercel/analytics/react"
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/labreport" element={<PageTransition><LabReport /></PageTransition>} />
         <Route path="/medicine" element={<PageTransition><Medicine /></PageTransition>} />
         <Route path="/chatbot" element={<Chatbot />} />
+        <Analytics />
       </Routes>
     </div>
   );
