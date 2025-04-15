@@ -42,8 +42,9 @@ const App = () => {
         <Route path="/labreport" element={<PageTransition><LabReport /></PageTransition>} />
         <Route path="/medicine" element={<PageTransition><Medicine /></PageTransition>} />
         <Route path="/chatbot" element={<Chatbot />} />
-        <Analytics />
+        
       </Routes>
+      <Analytics />
     </div>
   );
 };
