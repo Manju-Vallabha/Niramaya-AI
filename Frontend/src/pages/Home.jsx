@@ -338,30 +338,120 @@ const Home = () => {
         </div>
       </motion.section>
 
-      <motion.section
-        className="bg-primary py-12 px-4 sm:px-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        aria-labelledby="meta-llama-heading"
-      >
-        <div className="max-w-4xl mx-auto flex flex-col-reverse items-center text-center gap-6">
-          <div>
-            <h2 id="meta-llama-heading" className="text-2xl sm:text-3xl font-bold text-white mb-4">
-              Powered by Meta Llama
-            </h2>
-            <p className="text-white text-base sm:text-lg">
-              Powered by the advanced <strong>Meta Llama 3.3 70B</strong> language model, Niramaya AI delivers highly accurate and efficient medical insights. Our system intelligently extracts and processes text from medical images using state-of-the-art OCR techniques. Combined with carefully engineered prompts, the language model interprets complex healthcare data and responds in real-time, offering scalable, reliable, and context-aware assistance to users across the globe.
-            </p>
-          </div>
-          <img
-            src="/meta-llama.png"
-            alt="Meta AI Logo"
-            className="mx-auto mb-6 w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover"
-            style={{ backgroundColor: '#2C7A7B' }}
-          />
+      <div className="bg-secondary py-12 px-4 sm:px-8">
+  <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-6">
+    {/* Section: Powered by Meta Llama */}
+    <motion.section
+      className="bg-primary flex-1 py-8 px-4 rounded-lg shadow-lg"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      aria-labelledby="meta-llama-heading"
+    >
+      <div className="flex flex-col items-center text-center gap-4">
+        <img
+          src="/meta-llama.png"
+          alt="Meta AI Logo"
+          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-gray-200 shadow-md"
+          style={{ backgroundColor: '#2C7A7B' }}
+          onError={(e) => (e.target.src = 'https://via.placeholder.com/128')}
+        />
+        <div>
+          <h2 id="meta-llama-heading" className="text-xl sm:text-2xl font-bold text-white mb-3">
+            Powered by Meta Llama
+          </h2>
+          <p className="text-white text-sm sm:text-base mb-4">
+            Powered by the advanced <strong>Meta Llama 3.3 70B</strong> language model, Niramaya AI delivers highly accurate and efficient medical insights. Our system intelligently extracts and processes text from medical images using state-of-the-art OCR techniques.
+          </p>
+          <motion.a
+            href="https://www.meta.ai/"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileTap={{ scale: 0.95 }}
+            className="bg-white text-primary font-semibold py-2 px-4 rounded-full shadow-lg transition duration-300 inline-block text-sm min-w-[120px]"
+            aria-label="Visit Meta Llama Website"
+          >
+            Visit Meta Llama
+          </motion.a>
         </div>
-      </motion.section>
+      </div>
+    </motion.section>
+
+    {/* Section: Powered by Llama-OCR */}
+    <motion.section
+      className="bg-white flex-1 py-8 px-4 rounded-lg shadow-lg"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+      aria-labelledby="llama-ocr-heading"
+    >
+      <div className="flex flex-col items-center text-center gap-4">
+        <img
+          src="/llama-ocr.png"
+          alt="Llama-OCR Logo"
+          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-gray-200 shadow-md"
+          style={{ backgroundColor: '#2C7A7B' }}
+          onError={(e) => (e.target.src = 'https://via.placeholder.com/128')}
+        />
+        <div>
+          <h2 id="llama-ocr-heading" className="text-xl sm:text-2xl font-bold text-primary mb-3">
+            Powered by Llama-OCR
+          </h2>
+          <p className="text-gray-600 text-sm sm:text-base mb-4">
+            Llama-OCR, an open-source npm library powered by Together.ai’s Llama 3.2 Vision model, extracts text from medical images with high precision for personalized health insights.
+          </p>
+          <motion.a
+            href="https://llamaocr.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileTap={{ scale: 0.95 }}
+            className="bg-primary text-white font-semibold py-2 px-4 rounded-full shadow-lg transition duration-300 inline-block text-sm min-w-[120px]"
+            aria-label="Visit Llama-OCR Website"
+          >
+            Visit Llama-OCR
+          </motion.a>
+        </div>
+      </div>
+    </motion.section>
+
+    {/* Section: Powered by Together.ai */}
+    <motion.section
+      className="bg-primary flex-1 py-8 px-4 rounded-lg shadow-lg"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+      aria-labelledby="together-ai-heading"
+    >
+      <div className="flex flex-col items-center text-center gap-4">
+        <img
+          src="/together-ai.png"
+          alt="Together.ai Logo"
+          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-gray-200 shadow-md"
+          style={{ backgroundColor: '#2C7A7B' }}
+          onError={(e) => (e.target.src = 'https://via.placeholder.com/128')}
+        />
+        <div>
+          <h2 id="together-ai-heading" className="text-xl sm:text-2xl font-bold text-white mb-3">
+            Powered by Together.ai
+          </h2>
+          <p className="text-white text-sm sm:text-base mb-4">
+            Together.ai hosts Llama-OCR and Meta Llama 3.3 70B, powering Niramaya AI’s image processing and medical insights with low-latency, scalable infrastructure.
+          </p>
+          <motion.a
+            href="https://together.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileTap={{ scale: 0.95 }}
+            className="bg-white text-primary font-semibold py-2 px-4 rounded-full shadow-lg transition duration-300 inline-block text-sm min-w-[120px]"
+            aria-label="Visit Together.ai Website"
+          >
+            Visit Together.ai
+          </motion.a>
+        </div>
+      </div>
+    </motion.section>
+  </div>
+</div>
 
       <motion.section
         className="py-16 px-4 sm:px-8 max-w-7xl mx-auto bg-background"
