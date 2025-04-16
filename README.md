@@ -94,8 +94,8 @@ To set up Niramaya AI locally, follow the instructions for the frontend and back
    cd niramaya-ai
    ```
 3. Follow the setup instructions for:
-   - [Frontend Installation](./frontend/README.md) 📱
-   - [Backend Installation](./backend/README.md) 🖥️
+   - [Frontend Installation](./Frontend/README.md) 📱
+   - [Backend Installation](./Backend/README.md) 🖥️
 
 ## License 📜
 
