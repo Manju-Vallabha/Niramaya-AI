@@ -48,7 +48,7 @@ Niramaya AI leverages **Meta Llama 3.3 70B**, a state-of-the-art large language 
 - **Multilingual Responses** 🗣️: Supports translations and responses in multiple languages for global accessibility.
 - **Scalability** 📈: Llama’s efficiency ensures low-latency responses, even with high user traffic.
 
-Our integration combines Llama with Tesseract.js to extract text from medical images, enabling Niramaya AI to handle diverse healthcare data with unparalleled accuracy. 🚀
+Our integration combines Llama-ocr to extract text from medical images, enabling Niramaya AI to handle diverse healthcare data with unparalleled accuracy. 🚀
 
 ## Llama-OCR and Together.ai 📸🔗
 
