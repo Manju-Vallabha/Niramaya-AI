@@ -50,6 +50,15 @@ Niramaya AI leverages **Meta Llama 3.3 70B**, a state-of-the-art large language 
 
 Our integration combines Llama with Tesseract.js to extract text from medical images, enabling Niramaya AI to handle diverse healthcare data with unparalleled accuracy. 🚀
 
+## Llama-OCR and Together.ai 📸🔗
+
+Niramaya AI harnesses advanced tools to power its AI-driven healthcare insights. Below, we highlight the roles of **Llama-OCR** and **Together.ai** in our project:
+
+- **Llama-OCR** 📸: An open-source npm library powered by Together.ai’s Llama 3.2 Vision model, Llama-OCR extracts text from medical images, such as lab reports and medicine labels, with high precision. In Niramaya AI, it processes user-uploaded images via the `/labreport` and `/medicine` endpoints, enabling Meta Llama to analyze extracted text for personalized health summaries and medication insights. This ensures seamless handling of handwritten or printed medical documents, making healthcare data accessible to all. Learn more at [LlamaOCR.com](https://llamaocr.com/).
+- **Together.ai** 🔗: Together.ai is the backbone of Niramaya AI’s AI capabilities, hosting both Llama-OCR for image processing and Meta Llama 3.3 70B for generating medical insights and chatbot responses. By providing scalable AI infrastructure, Together.ai enables low-latency OCR and LLM calls through a single API key, powering endpoints like `/labreport`, `/medicine`, and `/chatbot`. This integration ensures efficient, accurate, and multilingual healthcare solutions. Explore their platform at [Together.ai](https://www.together.ai/).
+
+These tools empower Niramaya AI to transform complex medical data into user-friendly insights, driving accessibility and innovation in healthcare. 🌐
+
 ## The Team - AI-nfluencers 👥
 
 Our team is a blend of AI experts, engineers, and healthcare enthusiasts united by a passion for impact:
