@@ -84,10 +84,6 @@ To set up Niramaya AI locally, follow the instructions for the frontend and back
    - [Frontend Installation](./Frontend/README.md) 📱
    - [Backend Installation](./Backend/README.md) 🖥️
 
-## License 📜
-
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
-
 ## Contact 📬
 
 For inquiries, reach out at [Niramaya AI](mailto:omanjuvallabha@gmail.com) or connect with us on [LinkedIn](https://www.linkedin.com/in/manju-vallabha-pavalla/). 🌐
