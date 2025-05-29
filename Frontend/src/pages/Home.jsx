@@ -137,12 +137,12 @@ const Home = () => {
     setShowPopup(false);
   };
 
-  const team = [
-    { name: 'Manju Vallabha Pavalla', role: 'AI Intern', photo: '/person_1.jpeg', linkedin: 'https://www.linkedin.com/in/manju-vallabha-pavalla/' },
-    { name: 'Sirikonda Laxmi Sagar', role: 'AI Intern', photo: '/person_2.jpeg', linkedin: 'https://www.linkedin.com/in/sagar-sirikonda/' },
-    { name: 'Venkata Harish Kumar Kasibhotla', role: 'Engineering Manager - DevOps', photo: '/person_3.jpeg', linkedin: 'https://www.linkedin.com/in/venkata-harish-kumar-kasibhotla/' },
-    { name: 'Bhumika Patel', role: 'Senior Business Operations Analyst', photo: '/person_4.jpeg', linkedin: 'https://www.linkedin.com/in/bhumika-patel-1021/' },
-  ];
+  // const team = [
+  //   { name: 'Manju Vallabha Pavalla', role: 'AI Intern', photo: '/person_1.jpeg', linkedin: 'https://www.linkedin.com/in/manju-vallabha-pavalla/' },
+  //   { name: 'Sirikonda Laxmi Sagar', role: 'AI Intern', photo: '/person_2.jpeg', linkedin: 'https://www.linkedin.com/in/sagar-sirikonda/' },
+  //   { name: 'Venkata Harish Kumar Kasibhotla', role: 'Engineering Manager - DevOps', photo: '/person_3.jpeg', linkedin: 'https://www.linkedin.com/in/venkata-harish-kumar-kasibhotla/' },
+  //   { name: 'Bhumika Patel', role: 'Senior Business Operations Analyst', photo: '/person_4.jpeg', linkedin: 'https://www.linkedin.com/in/bhumika-patel-1021/' },
+  // ];
 
   const techStack = [
     { name: 'React', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/react.svg', desc: 'Dynamic UI' },
@@ -513,7 +513,7 @@ const Home = () => {
         animate="visible"
         aria-labelledby="team-heading"
       >
-        <h2 id="team-heading" className="text-3xl sm:text-4xl font-bold text-primary text-center mb-4">
+{/*         <h2 id="team-heading" className="text-3xl sm:text-4xl font-bold text-primary text-center mb-4">
           Meet The AI-nfluencers
         </h2>
         <p className="text-gray-600 text-base sm:text-lg text-center mb-10 max-w-3xl mx-auto">
@@ -554,7 +554,7 @@ const Home = () => {
             </motion.div>
           ))}
         </div>
-      </motion.section>
+      </motion.section> */}
 
       <footer className="bg-primary text-white py-8 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto text-center">
