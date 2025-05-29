@@ -59,19 +59,6 @@ Niramaya AI harnesses advanced tools to power its AI-driven healthcare insights.
 
 These tools empower Niramaya AI to transform complex medical data into user-friendly insights, driving accessibility and innovation in healthcare. 🌐
 
-## The Team - AI-nfluencers 👥
-
-Our team is a blend of AI experts, engineers, and healthcare enthusiasts united by a passion for impact:
-
-| **Name**                            | **Role**                              | **LinkedIn**                           |
-|-------------------------------------|---------------------------------------|----------------------------------------|
-| Manju Vallabha Pavalla             | AI Intern                            | [LinkedIn](https://www.linkedin.com/in/manju-vallabha-pavalla/) |
-| Sirikonda Laxmi Sagar              | AI Intern                            | [LinkedIn](https://www.linkedin.com/in/sagar-sirikonda/)       |
-| Venkata Harish Kumar Kasibhotla    | Engineering Manager - DevOps         | [LinkedIn](https://www.linkedin.com/in/venkata-harish-kumar-kasibhotla/) |
-| Bhumika Patel                      | Senior Business Operations Analyst   | [LinkedIn](https://www.linkedin.com/in/bhumika-patel-1021/)    |
-
-*United by a mission to democratize healthcare.* 💙
-
 ## Installation ⚙️
 
 To set up Niramaya AI locally, follow the instructions for the frontend and backend:
